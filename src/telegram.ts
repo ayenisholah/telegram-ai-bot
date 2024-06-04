@@ -96,10 +96,25 @@ export async function handleTelegramMessage(
     return;
   }
 
-  messages.push({ role: "user", content: `${msg.text} make response 1 paragraph if content contains greetings like hello, hi, gm, make response 1 line long, and make response faster` });
-  telegram.sendVideo(id, videoUrl)
-  const generation = await claude(messages);
-  telegram.sendMessage(id, generation.message);
-  messages.push({ role: "assistant", content: generation.message });
-  set(id, messages);
+
+  const web3Greetings = ['gm', 'gn', 'hello', 'hi', 'wagwan'];
+  const isgreeting = greetings(msg.text, web3Greetings)
+
+  if (isgreeting) {
+    const response = `*pepe peace sign* ✌️😎 Wagwan, fren! Just vibin' in the $MEP zone, ready to take on the day like a boss! 🐸💪`
+    telegram.sendMessage(id, response);
+    set(id, messages);
+  } else {
+    messages.push({ role: "user", content: `${msg.text} make response 1 paragraph if content contains greetings like hello, hi, gm, make response 1 line long, and make response faster` });
+    telegram.sendVideo(id, videoUrl)
+    const generation = await claude(messages);
+    telegram.sendMessage(id, generation.message);
+    messages.push({ role: "assistant", content: generation.message });
+    set(id, messages);
+  }
+}
+
+
+function greetings(str: string, arr: string[]) {
+  return arr.some(item => str.includes(item));
 }
