@@ -1,0 +1,49 @@
+{
+	"name": "telegram-ai-bot",
+	"version": "1.0.0",
+	"description": "This is a Telegram bot that integrates with the Claude AI and generates response based on Pepe the Frog humor.",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon src/index.ts",
+		"build": "tsc",
+		"start": "node dist/index.js"
+	},
+	"dependencies": {
+		"@anthropic-ai/sdk": "^0.22.0",
+		"@aws-sdk/client-s3": "^3.417.0",
+		"@upstash/redis": "^1.22.0",
+		"dotenv": "^16.3.1",
+		"node-telegram-bot-api": "^0.63.0",
+		"openai": "^4.8.0",
+		"tiny-invariant": "^1.3.1",
+		"whatsapp-web.js": "^1.22.1",
+		"zod": "^3.22.2"
+	},
+	"devDependencies": {
+		"@types/node": "^20.6.3",
+		"@types/node-telegram-bot-api": "^0.61.7",
+		"@types/qrcode-terminal": "^0.12.0",
+		"nodemon": "^3.0.1",
+		"qrcode-terminal": "^0.12.0",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.2.2"
+	},
+	"keywords": [
+		"telegram",
+		"bot",
+		"ai",
+		"claude",
+		"node",
+		"typescript",
+		"openai",
+		"@anthropic-ai/sdk",
+		"node-telegram-bot-api",
+		"whatsapp-web.js"
+	],
+	"author": {
+		"name": "Shola Ayeni",
+		"email": "ayenisholah@gmail.com",
+		"url": "https://github.com/ayenisholah"
+	},
+	"license": "ISC"
+}
