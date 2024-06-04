@@ -13,15 +13,16 @@ export type MessageCreateParamsBase = Anthropic.Messages.MessageParam[];
 export async function claude(messages: MessageCreateParamsBase) {
 
   try {
-    const message = await anthropic.messages.create({
+    const message = await anthropic.messages.stream({
       max_tokens: 1024,
       messages: messages,
       model: 'claude-3-opus-20240229',
-    });
+      stream: true,
+    })
+    const response = await message.finalMessage();
 
-    const response: string = (message.content[message.content.length - 1] as any).text
-    console.log(response);
-    return { message: response }
+    const text = (response.content[response.content.length - 1] as any).text
+    return { message: text }
 
   } catch (error) {
     console.log("Generation Failed")
