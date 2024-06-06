@@ -106,9 +106,10 @@ export async function handleTelegramMessage(
     set(id, messages);
   } else {
     messages.push({ role: "user", content: `${msg.text} make response 1 paragraph if content contains greetings like hello, hi, gm, make response 1 line long, and make response faster` });
-    telegram.sendVideo(id, videoUrl)
+    const video = await telegram.sendVideo(id, videoUrl)
     const generation = await claude(messages);
     telegram.sendMessage(id, generation.message);
+    telegram.deleteMessage(id, video.message_id)
     messages.push({ role: "assistant", content: generation.message });
     set(id, messages);
   }
