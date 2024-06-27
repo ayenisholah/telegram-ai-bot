@@ -1,5 +1,4 @@
 import type { Redis } from "@upstash/redis";
-import { Messages } from "./openai";
 import { MessageCreateParamsBase } from "./claude";
 
 export async function redisMethods(redis: Redis) {
